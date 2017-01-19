@@ -31,13 +31,13 @@ spec:
             - name: postsh
               mountPath: /tmp/post.sh
               subPath: post.sh
-            - name: openrcyaml
-              mountPath: /tmp/openrc.yaml
-              subPath: openrc.yaml
+            - name: cloudsyaml
+              mountPath: /etc/openstack/clouds.yaml
+              subPath: clouds.yaml
       volumes:
         - name: postsh
           configMap:
             name: nova-postsh
-        - name: openrcyaml
+        - name: cloudsyaml
           configMap:
-            name: nova-openrcyaml
+            name: nova-cloudsyaml

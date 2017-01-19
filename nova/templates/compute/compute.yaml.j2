@@ -116,9 +116,9 @@ spec:
             - mountPath: /etc/resolv.conf
               name: resolvconf
               subPath: resolv.conf
-            - name: openrcyaml
-              mountPath: /tmp/openrc.yaml
-              subPath: openrc.yaml
+            - name: cloudsyaml
+              mountPath: /etc/openstack/clouds.yaml
+              subPath: clouds.yaml
             - name: hookspy
               mountPath: /tmp/hooks.py
               subPath: hooks.py
@@ -159,9 +159,9 @@ spec:
         - name: cgroup
           hostPath:
             path: /sys/fs/cgroup
-        - name: openrcyaml
+        - name: cloudsyaml
           configMap:
-            name: nova-openrcyaml
+            name: nova-cloudsyaml
         - name: hookspy
           configMap:
             name: nova-hookspy

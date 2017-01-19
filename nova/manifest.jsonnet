@@ -155,9 +155,9 @@ kpm.package({
     },
 
     {
-      file: "configmaps/openrc.yaml.j2",
-      template: (importstr "templates/configmaps/openrc.yaml.j2"),
-      name: "nova-openrcyaml",
+      file: "configmaps/clouds.yaml.j2",
+      template: (importstr "templates/configmaps/clouds.yaml.j2"),
+      name: "nova-cloudsyaml",
       type: "configmap",
     },
 

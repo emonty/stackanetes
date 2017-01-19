@@ -1,0 +1,12 @@
+clouds:
+  stackanetes-admin:
+    auth:
+      auth_url: http://identity.openstack.cluster:30080
+      username: admin
+      password: password
+      user_domain_id: default
+      project_domain_id: default
+      project_name: admin
+    region_name: RegionOne
+    identity_api_version: 3
+    # volume_api_version: 2

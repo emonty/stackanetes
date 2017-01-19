@@ -164,7 +164,7 @@ Once Stackanetes is fully deployed, we can log in to Horizon or use the CLI dire
 
 If Ingress is enabled, Horizon may be accessed on http://horizon.openstack.cluster:30080/. Otherwise, it will be available on port 80 of any defined external IP. The default credentials are _admin_ / _password_.
 
-The file [env_openstack.sh](env_openstack.sh) contains the default environment variables that will enable interaction using the various OpenStack clients.
+A [clouds.yaml](clouds.yaml) file contains an entry for the admin account on the cloud for use with python\_openstackclient. Additionally, the file [env_openstack.sh](env_openstack.sh) contains the environment variables that will enable interaction using legacy OpenStack clients that do not yet understand clouds.yaml.
 
 ### Update
 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  clouds.yaml: |+
+    clouds:
+      stackanetes-admin:
+        auth:
+          project_domain_name: {{ keystone.domain_name }}
+          user_domain_name: {{ keystone.domain_name }}
+          project_name: {{ keystone.admin_project_name }}
+          username: {{ keystone.admin_user }}
+          password: {{ keystone.admin_password }}
+          auth_url {{ keystone.auth_url }}
+        identity_api_version: 3
+        interface: internal

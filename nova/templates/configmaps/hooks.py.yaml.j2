@@ -10,51 +10,15 @@ data:
     import yaml
 
     from kubernetes import watch, client as k8sclient
-    from keystoneauth1 import identity, session
-    from novaclient import client, exceptions
+    import shade
 
-    OPENRC_PATH = "/tmp/openrc.yaml"
     ACCEPTABLE_OPERATIONS = ["poststart_compute", "prestop_compute", "prestop_libvirt"]
 
 
-    def load_configs(openrc_parh=OPENRC_PATH):
-        with open(openrc_parh, 'r') as stream:
-                try:
-                    config = yaml.load(stream)
-                except yaml.YAMLError as e:
-                    print "Cannot load configs: {}".format(e)
-                    sys.exit(1)
-
-        return config
-
-
-    def get_sessions():
-        config = load_configs()
-        try:
-            auth = identity.v3.Password(
-                auth_url=config["OS_AUTH_URL"],
-                username=config["OS_USERNAME"],
-                password=config["OS_PASSWORD"],
-                project_name=config["OS_PROJECT_NAME"],
-                user_domain_id=config["OS_USER_DOMAIN_ID"],
-                project_domain_id=config["OS_PROJECT_DOMAIN_ID"]
-            )
-            keystone_session = session.Session(auth=auth)
-        except Exception as e:
-            print "Cannot create session: {}".format(e)
-            sys.exit(1)
-
-        return keystone_session
-
-
     def get_nova_client():
-        keystone_session = get_sessions()
         try:
-            nova_client = client.Client(
-                version="2.1",
-                session=keystone_session,
-                endpoint_type="internalURL"
-            )
+            cloud = shade.openstack_cloud(cloud='stackanetes-admin')
+            nova_client = cloud.nova_client
         except Exception as e:
             print "Cannot create nova_client: {}".format(e)
             sys.exit(1)

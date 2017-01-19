@@ -103,9 +103,9 @@ spec:
             - name: cgroup
               mountPath: /sys/fs/cgroup
             {%- endif %}
-            - name: openrcyaml
-              mountPath: /tmp/openrc.yaml
-              subPath: openrc.yaml
+            - name: cloudsyaml
+              mountPath: /etc/openstack/clouds.yaml
+              subPath: clouds.yaml
             - name: hookspy
               mountPath: /tmp/hooks.py
               subPath: hooks.py
@@ -148,9 +148,9 @@ spec:
           hostPath:
             path: /sys/fs/cgroup
         {%- endif %}
-        - name: openrcyaml
+        - name: cloudsyaml
           configMap:
-            name: nova-openrcyaml
+            name: nova-cloudsyaml
         - name: hookspy
           configMap:
             name: nova-hookspy
